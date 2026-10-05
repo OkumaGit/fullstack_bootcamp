@@ -20,18 +20,21 @@ const products = [
     name: "Running Shoes",
     description: "A beautiful shoes",
     price: 89.99,
+    category: "Footwear",
   },
   {
     id: 2,
     name: "Yoga Mat",
     description: "Best in class Yoga Mat",
     price: 24.99,
+    category: "Fitness",
   },
   {
     id: 3,
     name: "Water Bottle",
     description: "A Stainless steel Water Bottle",
     price: 14.99,
+    category: "Hydration",
   },
 ];
 
@@ -56,6 +59,7 @@ function Main() {
             name={product.name}
             description={product.description}
             price={product.price}
+            category={product.category}
           />
         ))}
       </section>
