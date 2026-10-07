@@ -13,32 +13,32 @@
  *   instead of defining the array here.
  */
 import ProductCard from "./ProductCard";
+import { useState, useEffect } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Running Shoes",
-    description: "A beautiful shoes",
-    price: 89.99,
-    category: "Footwear",
-  },
-  {
-    id: 2,
-    name: "Yoga Mat",
-    description: "Best in class Yoga Mat",
-    price: 24.99,
-    category: "Fitness",
-  },
-  {
-    id: 3,
-    name: "Water Bottle",
-    description: "A Stainless steel Water Bottle",
-    price: 14.99,
-    category: "Hydration",
-  },
-];
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  price: number;
+}
 
+interface MainProps {
+  products: Product[];
+}
+
+// function Main({ products }: MainProps) {
 function Main() {
+  const [products, setProducts] = useState<Product[]>([]);
+  useEffect(() => {
+    async function fetchProducts() {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data: Product[] = await response.json();
+      setProducts(data);
+    }
+    fetchProducts();
+  }, []);
+
   return (
     <main className="p-6 bg-gray-100 min-h-screen">
       {/* Welcome Section */}
@@ -55,8 +55,9 @@ function Main() {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {products.map((product) => (
           <ProductCard
+            key={product.id}
             id={product.id}
-            name={product.name}
+            name={product.title}
             description={product.description}
             price={product.price}
             category={product.category}
