@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface ProductCardProps {
   id: number;
   name: string;
@@ -24,10 +26,11 @@ function ProductCard({
       <p>{description}</p>
       <span className="text-green-600">{price}$</span>
       <div>
-        {" "}
-        <button className="rounded-full bg-black px-5 py-2 text-sm leading-5 font-semibold text-white hover:bg-blue-500">
-          Add to Cart
-        </button>
+        <Link to={`/product/${id}`}>
+          <button className="rounded-full bg-black px-5 py-2 text-sm leading-5 font-semibold text-white hover:bg-blue-500">
+            Add to Cart
+          </button>
+        </Link>
       </div>
     </div>
   );
