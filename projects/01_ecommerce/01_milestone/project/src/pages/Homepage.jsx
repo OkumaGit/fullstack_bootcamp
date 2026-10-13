@@ -26,7 +26,7 @@ const products = [
   },
 ];
 
-function Homepage() {
+function HomePage(addToCart) {
   return (
     <div className="App">
       {/* Header Component */}
@@ -39,4 +39,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;

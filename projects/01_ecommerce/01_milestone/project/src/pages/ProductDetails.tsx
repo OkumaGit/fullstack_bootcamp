@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import type { Product } from "../types";
 
 function ProductDetails() {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     async function fetchProductID() {

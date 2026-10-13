@@ -14,14 +14,7 @@
  */
 import ProductCard from "./ProductCard";
 import { useState, useEffect } from "react";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-}
+import type { Product } from "../types";
 
 interface MainProps {
   products: Product[];
@@ -54,14 +47,7 @@ function Main() {
           a products array, rendering a <ProductCard /> for each item */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.title}
-            description={product.description}
-            price={product.price}
-            category={product.category}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </section>
     </main>

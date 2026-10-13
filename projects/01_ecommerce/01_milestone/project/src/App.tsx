@@ -4,14 +4,20 @@
  * to create the overall structure of the page.
  */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Homepage";
+import { useState } from "react";
+import HomePage from "./pages/HomePage";
 import ProductDetails from "./pages/ProductDetails";
+import type { Product } from "./types";
 
 function App() {
+  const [cart, setCart] = useState<Product[]>([]);
+  const addToCart = (product: Product): void => {
+    setCart([...cart, product]);
+  };
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage addToCart={addToCart} />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Router>
