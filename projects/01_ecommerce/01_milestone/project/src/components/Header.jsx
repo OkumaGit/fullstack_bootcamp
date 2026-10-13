@@ -18,6 +18,12 @@ function Header() {
         <a href="/about" className="text-white hover:underline">
           About
         </a>
+        <div>
+          <a href="/cart" className="text-white hover:underline">
+            Cart
+          </a>
+          <span className="CartNumber">0</span>
+        </div>
       </nav>
     </header>
   );
