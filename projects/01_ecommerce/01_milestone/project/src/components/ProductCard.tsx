@@ -28,14 +28,12 @@ function ProductCard({ product, addToCart }: ProductCardProps) {
 
       <div className="flex flex-col gap-2">
         <span className="text-green-600 py-2">{price}$</span>
-
         <Link
           to={`/product/${id}`}
           className="text-center text-sm text-blue-500 hover:underline"
         >
           View Details
         </Link>
-
         <button
           onClick={() =>
             addToCart

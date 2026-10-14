@@ -4,6 +4,8 @@
  * It uses Tailwind CSS classes for styling.
  */
 
+import { Link } from "react-router-dom";
+
 function Header({ cart }) {
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
@@ -19,9 +21,9 @@ function Header({ cart }) {
           About
         </a>
         <div>
-          <a href="/cart" className="text-white hover:underline">
+          <Link to={`/cart`} className="text-white hover:underline">
             Cart
-          </a>
+          </Link>
           <span className="CartNumber"> {cart ? cart.length : " 0"}</span>
         </div>
       </nav>
