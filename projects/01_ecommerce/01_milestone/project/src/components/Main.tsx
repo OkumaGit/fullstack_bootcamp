@@ -17,11 +17,11 @@ import { useState, useEffect } from "react";
 import type { Product } from "../types";
 
 interface MainProps {
-  products: Product[];
+  addToCart?: (product: Product) => void;
 }
 
 // function Main({ products }: MainProps) {
-function Main() {
+function Main({ addToCart }: MainProps) {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     async function fetchProducts() {
@@ -47,7 +47,11 @@ function Main() {
           a products array, rendering a <ProductCard /> for each item */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
         ))}
       </section>
     </main>

@@ -4,7 +4,7 @@
  * It uses Tailwind CSS classes for styling.
  */
 
-function Header() {
+function Header({ cart }) {
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold">E-Commerce React Project for REDI</h1>
@@ -22,7 +22,7 @@ function Header() {
           <a href="/cart" className="text-white hover:underline">
             Cart
           </a>
-          <span className="CartNumber">0</span>
+          <span className="CartNumber"> {cart ? cart.length : " 0"}</span>
         </div>
       </nav>
     </header>

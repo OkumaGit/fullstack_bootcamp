@@ -3,7 +3,7 @@ import type { Product } from "../types";
 
 interface ProductCardProps {
   product: Product;
-  addToCart: (product: Product) => void;
+  addToCart?: (product: Product) => void;
 }
 
 function ProductCard({ product, addToCart }: ProductCardProps) {
@@ -37,7 +37,11 @@ function ProductCard({ product, addToCart }: ProductCardProps) {
         </Link>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={() =>
+            addToCart
+              ? addToCart(product)
+              : "no addToCart recieved in ProductCard"
+          }
           className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm leading-5 font-semibold text-white hover:bg-blue-500"
         >
           Add to Cart
