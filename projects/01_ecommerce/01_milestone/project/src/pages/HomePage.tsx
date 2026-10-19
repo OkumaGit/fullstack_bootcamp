@@ -5,16 +5,15 @@ import type { Product } from "../types";
 
 interface HomePageProps {
   cart: Product[];
-  addToCart: (product: Product) => void;
 }
 
-function HomePage({ addToCart, cart }: HomePageProps) {
+function HomePage({ cart }: HomePageProps) {
   return (
     <div className="App">
       {/* Header Component */}
-      <Header cart={cart} />
+      <Header />
       {/* Main Content Component */}
-      <Main addToCart={addToCart} />
+      <Main />
       {/* Footer Component */}
       <Footer />
     </div>

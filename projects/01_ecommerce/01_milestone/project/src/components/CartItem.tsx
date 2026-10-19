@@ -3,9 +3,10 @@ import type { Product } from "../types";
 
 interface CartItemProps {
   product: Product;
+  removeFromCart: (product: Product) => void;
 }
 
-function CartItem({ product }: CartItemProps) {
+function CartItem({ product, removeFromCart }: CartItemProps) {
   const { id, title, price, description, category, image } = product;
 
   return (
@@ -24,7 +25,6 @@ function CartItem({ product }: CartItemProps) {
         </h3>
         <p>{description}</p>
       </div>
-
       <div className="flex flex-col gap-2">
         <span className="text-green-600 py-2">{price}$</span>
         <Link
@@ -33,7 +33,12 @@ function CartItem({ product }: CartItemProps) {
         >
           View Details
         </Link>
-        <button className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm leading-5 font-semibold text-white hover:bg-blue-500">
+        <button
+          onClick={() => {
+            removeFromCart(product);
+          }}
+          className="cursor-pointer rounded-full bg-black px-5 py-2 text-sm leading-5 font-semibold text-white hover:bg-blue-500"
+        >
           Remove from cart
         </button>
       </div>

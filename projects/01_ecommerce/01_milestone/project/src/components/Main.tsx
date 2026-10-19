@@ -21,7 +21,7 @@ interface MainProps {
 }
 
 // function Main({ products }: MainProps) {
-function Main({ addToCart }: MainProps) {
+function Main() {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     async function fetchProducts() {
@@ -47,11 +47,7 @@ function Main({ addToCart }: MainProps) {
           a products array, rendering a <ProductCard /> for each item */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </section>
     </main>

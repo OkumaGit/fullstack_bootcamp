@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../App";
 import type { Product } from "../types";
 
 interface ProductCardProps {
   product: Product;
-  addToCart?: (product: Product) => void;
 }
 
-function ProductCard({ product, addToCart }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useContext(CartContext);
   const { id, title, price, description, category, image } = product;
 
   return (
