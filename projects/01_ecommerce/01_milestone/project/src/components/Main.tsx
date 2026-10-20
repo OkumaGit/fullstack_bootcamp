@@ -23,11 +23,20 @@ interface MainProps {
 // function Main({ products }: MainProps) {
 function Main() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [error, setError] = useState("");
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch("https://fakestoreapi.com/products");
-      const data: Product[] = await response.json();
-      setProducts(data);
+      try {
+        const response = await fetch("https://fakestoreapi.com/products");
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+        const data: Product[] = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products: ", error);
+        setError("Failed to load products. Please try again.");
+      }
     }
     fetchProducts();
   }, []);
@@ -36,6 +45,7 @@ function Main() {
     <main className="p-6 bg-gray-100 min-h-screen">
       {/* Welcome Section */}
       <section className="text-center mb-8">
+        {error ? <p className="text-red-600">{error}</p> : null}
         <h2 className="text-2xl font-semibold text-blue-700">
           Welcome to Our Store!
         </h2>

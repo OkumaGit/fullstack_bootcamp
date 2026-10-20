@@ -1,13 +1,8 @@
 import Header from "../components/Header";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
-import type { Product } from "../types";
 
-interface HomePageProps {
-  cart: Product[];
-}
-
-function HomePage({ cart }: HomePageProps) {
+function HomePage() {
   return (
     <div className="App">
       {/* Header Component */}

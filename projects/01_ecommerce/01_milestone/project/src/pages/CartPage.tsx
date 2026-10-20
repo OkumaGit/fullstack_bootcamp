@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import { useState, useEffect } from "react";
 import type { Product } from "../types";
 import CartItem from "../components/CartItem";
 import Header from "../components/Header";

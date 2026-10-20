@@ -6,25 +6,35 @@
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from "../App";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 function Header() {
   const { cart } = useContext(CartContext);
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
-      <a href="/" className="text-white">
+      <Link href="/" className="text-white">
         <h1 className="text-2xl font-bold">E-Commerce for REDI</h1>
-      </a>
+      </Link>
       <nav className="flex items-center gap-4">
-        <a href="/" className="text-white hover:underline">
+        <Link
+          to={`/`}
+          className="flex items-center gap-2 text-white mr-2 hover:underline"
+        >
           Home
-        </a>
-        <a href="/products" className="text-white  hover:underline">
+        </Link>
+        <Link
+          to={`/products`}
+          className="flex items-center gap-2 text-white mr-2 hover:underline"
+        >
           Products
-        </a>
-        <a href="/about" className="text-white  mr-2 hover:underline">
+        </Link>
+        <Link
+          to={`/about`}
+          className="flex items-center gap-2 text-white mr-2 hover:underline"
+        >
           About
-        </a>
+        </Link>
+
         <div style={{ display: "inline-block" }}>
           <Link
             to={`/cart`}
