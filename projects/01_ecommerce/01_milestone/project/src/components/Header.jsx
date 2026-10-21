@@ -12,7 +12,7 @@ function Header() {
   const { cart } = useContext(CartContext);
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
-      <Link href="/" className="text-white">
+      <Link to="/" className="text-white">
         <h1 className="text-2xl font-bold">E-Commerce for REDI</h1>
       </Link>
       <nav className="flex items-center gap-4">

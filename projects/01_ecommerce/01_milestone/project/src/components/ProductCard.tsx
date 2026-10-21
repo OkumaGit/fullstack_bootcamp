@@ -27,7 +27,6 @@ function ProductCard({ product }: ProductCardProps) {
         </h3>
         <p>{description}</p>
       </div>
-
       <div className="flex flex-col gap-2">
         <span className="text-green-600 py-2">{price}$</span>
         <Link

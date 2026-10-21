@@ -13,27 +13,37 @@ function CartPage({ cart, removeFromCart }: CartPageProps) {
   const cartContent = () => {
     if (cart.length >= 1) {
       return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cart.map((product) => {
-              return (
-                <CartItem
-                  key={product.id}
-                  product={product}
-                  removeFromCart={removeFromCart}
-                />
-              );
-            })}
+        <main className="p-6 bg-gray-100 min-h-screen">
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-blue-700">Your cart</h2>
+            <div className="p-6 bg-gray-100 min-h-screen">
+              <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 ">
+                {cart.map((product) => {
+                  return (
+                    <CartItem
+                      key={product.id}
+                      product={product}
+                      removeFromCart={removeFromCart}
+                    />
+                  );
+                })}
+              </section>
+            </div>
           </section>
-        </div>
+        </main>
       );
     }
     return (
-      <div className="p-6 bg-gray-100 min-h-screen">
-        <section className="flex justify-center text-center items-center space-x-6">
-          No items in cart
+      <main className="p-6 bg-gray-100 min-h-screen">
+        <section className="text-center mb-8">
+          <h2 className="text-2xl font-semibold text-blue-700">Your cart</h2>
+          <div className="p-6 bg-gray-100 min-h-screen">
+            <section className="flex justify-center text-center items-center space-x-6">
+              No items in cart
+            </section>
+          </div>
         </section>
-      </div>
+      </main>
     );
   };
   return (
