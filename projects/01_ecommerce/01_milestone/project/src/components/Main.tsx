@@ -17,19 +17,29 @@ import ProductCard from "./ProductCard";
 import { useState, useEffect } from "react";
 import type { Product } from "../types";
 import Category from "./Category";
+import Search from "./Search";
 
 function Main() {
+  const [searchResult, setSearchResult] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
   const [isSelected, setIsSelected] = useState("All");
-  const filteredProducts =
+  let filteredProducts =
     isSelected === "All"
       ? products
       : products.filter((element) => element.category === isSelected);
+  filteredProducts =
+    searchResult.length > 0
+      ? filteredProducts.filter((element) =>
+          element.title.toLowerCase().includes(searchResult),
+        )
+      : filteredProducts;
+
   let categories = [
     "All",
     ...new Set(
       products.map((element) => {
+        console.log("element category: ", element.category);
         return element.category;
       }),
     ),
@@ -63,11 +73,16 @@ function Main() {
         <p className="mt-4 text-gray-600">
           Discover our amazing products and enjoy exclusive deals.
         </p>
-        <Category
-          setSelected={setIsSelected}
-          isSelected={isSelected}
-          categories={categories}
-        />
+        <div>
+          <div className="flex justify-center items-center gap-4 p-6">
+            <Category
+              setIsSelected={setIsSelected}
+              isSelected={isSelected}
+              categories={categories}
+            />
+            <Search setSearchResult={setSearchResult} />
+          </div>
+        </div>
       </section>
       {/* TODO (Exercise 2): Replace the hardcoded divs below with a .map() over
           a products array, rendering a <ProductCard /> for each item */}
