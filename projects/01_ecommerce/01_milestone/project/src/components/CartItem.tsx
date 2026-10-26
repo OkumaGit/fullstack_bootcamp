@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
 import type { Product } from "../types";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaPlus, FaMinus } from "react-icons/fa";
+import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../App";
 
 interface CartItemProps {
   product: Product;
   removeFromCart: (product: Product) => void;
+  decreaseAmount: (product: Product) => void;
 }
 
-function CartItem({ product, removeFromCart }: CartItemProps) {
-  const { id, title, price, description, category, image } = product;
+function CartItem({ product, removeFromCart, decreaseAmount }: CartItemProps) {
+  const { addToCart } = useContext(CartContext);
+  const { id, title, price, category, image } = product;
+  // const [amount, setAmount] = useState(1);
 
   return (
     <div className="flex justify-between flex-col gap-y-[5px] border-t-4 border-blue-500 p-4 bg-white shadow-md rounded-lg hover:shadow-xl ">
@@ -43,20 +49,24 @@ function CartItem({ product, removeFromCart }: CartItemProps) {
       </div>
       <div className="flex flex-col gap-2">
         <span className="text-green-600 py-2">{price}$</span>
-
         <div>
           <button
-            onClick={() => {}}
+            onClick={() => {
+              // setAmount((prev) => prev + 1);
+              addToCart(product);
+            }}
             className="cursor-pointer rounded-full  px-5 py-2 text-sm leading-5 font-semibold bg-blue-100 text-black hover:text-white hover:bg-blue-500"
           >
-            +
+            <FaPlus />
           </button>
-          <span className="productAmount px-5">1</span>
+          <span className="productAmount px-5">{product.qty}</span>
           <button
-            onClick={() => {}}
+            onClick={() => {
+              decreaseAmount(product);
+            }}
             className="cursor-pointer rounded-full  px-5 py-2 text-sm leading-5 font-semibold bg-blue-100 text-black hover:text-white hover:bg-blue-500"
           >
-            -
+            <FaMinus />
           </button>
         </div>
       </div>

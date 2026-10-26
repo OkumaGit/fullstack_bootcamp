@@ -6,10 +6,22 @@
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { CartContext } from "../App";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 function Header() {
   const { cart } = useContext(CartContext);
+
+  const cartAmount = () => {
+    let cartQty = 0;
+    cart.map((element) => {
+      cartQty += element.qty;
+    });
+    return cartQty;
+  };
+  useEffect(() => {
+    cartAmount();
+  }, []);
+
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center">
       <Link to="/" className="text-white">
@@ -43,7 +55,7 @@ function Header() {
             <FaShoppingCart />
             <span className="CartNumber text-xs inline-flex h-8 w-8 items-center justify-center font-semibold uppercase tracking-wide text-white bg-black px-0.5 py-0.5 rounded">
               {" "}
-              {cart ? cart.length : "0"}
+              {cart ? cartAmount() : "0"}
             </span>
           </Link>
         </div>

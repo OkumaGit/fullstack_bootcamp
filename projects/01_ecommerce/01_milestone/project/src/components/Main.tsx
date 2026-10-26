@@ -12,18 +12,28 @@
  * EXERCISE 4: Update this component to receive products as a prop from App.jsx
  *   instead of defining the array here.
  */
+
 import ProductCard from "./ProductCard";
 import { useState, useEffect } from "react";
 import type { Product } from "../types";
+import Category from "./Category";
 
-interface MainProps {
-  addToCart?: (product: Product) => void;
-}
-
-// function Main({ products }: MainProps) {
 function Main() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
+  const [isSelected, setIsSelected] = useState("All");
+  const filteredProducts =
+    isSelected === "All"
+      ? products
+      : products.filter((element) => element.category === isSelected);
+  let categories = [
+    "All",
+    ...new Set(
+      products.map((element) => {
+        return element.category;
+      }),
+    ),
+  ];
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -44,6 +54,7 @@ function Main() {
   return (
     <main className="p-6 bg-gray-100 min-h-screen">
       {/* Welcome Section */}
+
       <section className="text-center mb-8">
         {error ? <p className="text-red-600">{error}</p> : null}
         <h2 className="text-2xl font-semibold text-blue-700">
@@ -52,11 +63,16 @@ function Main() {
         <p className="mt-4 text-gray-600">
           Discover our amazing products and enjoy exclusive deals.
         </p>
+        <Category
+          setSelected={setIsSelected}
+          isSelected={isSelected}
+          categories={categories}
+        />
       </section>
       {/* TODO (Exercise 2): Replace the hardcoded divs below with a .map() over
           a products array, rendering a <ProductCard /> for each item */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </section>
