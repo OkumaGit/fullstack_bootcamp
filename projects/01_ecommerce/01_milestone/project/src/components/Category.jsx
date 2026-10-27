@@ -11,7 +11,6 @@ function Category({ categories, isSelected, setIsSelected }) {
           <button
             onClick={() => {
               setIsSelected(element);
-
               // setIsSelected(!isSelected);
             }}
             className={`capitalize ... cursor-pointer rounded-full  px-5 py-2 text-sm leading-5 font-semibold ${isSelected ? "bg-blue-100 text-black hover:text-white hover:bg-blue-500" : "bg-blue-500 text-black hover:text-white hover:bg-blue-500"} `}
